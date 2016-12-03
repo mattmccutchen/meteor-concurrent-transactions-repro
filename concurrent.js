@@ -43,13 +43,17 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
     Meteor.methods({
         insertDocuments: function(client_id) {
+            console.log(`client ${client_id}: tx.start begin`);
             tx.start();
+            console.log(`client ${client_id}: tx.start end`);
             var pfx = Random.id();
             for (var i = 0; i < 10; i++) {
                 var id = client_id + "_" + pfx + "_" + i;
                 Documents.insert({_id: id}, {tx: true});
             }
+            console.log(`client ${client_id}: tx.commit begin`);
             tx.commit();
+            console.log(`client ${client_id}: tx.commit end`);
         }
     });
 }
