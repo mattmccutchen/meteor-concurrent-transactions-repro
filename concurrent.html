@@ -1,0 +1,18 @@
+<template name="main">
+    <div><button id="run_concurrent_txns">Run concurrent transactions</button> <button id="undo">Undo</button></div>
+    <div>
+        <iframe id="fa" width="200" height="150" src="/a"></iframe>
+        <iframe id="fb" width="200" height="150" src="/b"></iframe>
+    </div>
+    <h2>Existing documents</h2>
+    <ul>
+        {{#each allDocs}}
+        <li>{{_id}}</li>
+        {{/each}}
+    </ul>
+</template>
+
+<template name="one_client">
+    <h2>Client {{client_id}}</h2>
+    <button id="run_txn">Run transaction</button>
+</template>
